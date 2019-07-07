@@ -12,6 +12,8 @@ let ShowMovies = {
         let request = Utils.parseRequestURL()
         let posts = await getMovies(request.id);
         const movie = posts.data.movie;
+        console.log(movie);
+
 
         return `
         <section
@@ -29,10 +31,21 @@ let ShowMovies = {
                         />
                     </a>
                 </div>
-                <div class="col-md-9 px-4">
+                <div class="col-md-9 px-4 text-white">
                     <h1 class="text-white mb-3">${movie.title}</h1>
                     <h4 class="text-white">${movie.year}</h4>
-                    <h4 class="text-white">${movie.genres.map(item => item + ' ').join('')}</h4>
+                    <h6 class="text-white">${movie.genres.map(item => item)}</h6>
+                    <p class="text-white">Language: ${movie.language}</p>
+                    <div class="h5 rating mb-4 d-flex align-items-center">
+                        <i class="fas fa-star d-block mb-1 text-success mr-2"></i>
+                        ${movie.rating}/10
+                    </div>
+                    <h4 class="text-white">Movie Cast:</h4>
+                    <h6 class="list-unstyled mb-4">
+                        ${movie.cast.map(cast => cast.name)}
+                    </h6>
+                    <h4 class="text-white">Movie Plot:</h4>
+                    <p>${movie.description_full}</p>
                 </div>
              </div>
             </div>

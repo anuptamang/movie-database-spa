@@ -6,3 +6,5 @@
 - [x] Movies are listed in Ascending order by Highest Ratings
 - [x] Movies details can be views by clicking movie card
 - [x] Movies can be search on search form
+
+### FYI: The API response time is little slow, I am using this free movie API: `https://yts.lt/api`
