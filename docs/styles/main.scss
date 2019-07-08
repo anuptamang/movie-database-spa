@@ -12,6 +12,56 @@ body {
   overflow: hidden;
 }
 
+.page-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 3px;
+  z-index: 999;
+  background: #09dc09;
+  background: linear-gradient(-45deg, #09dc09, #09dc09, #23A6D5, #23D5AB);
+	-webkit-animation: Gradient 1s ease infinite;
+	-moz-animation: Gradient 1s ease infinite;
+	animation: Gradient 1s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
 #header {
   border-bottom: 1px solid rgba(255,255,255,0.5);
 }

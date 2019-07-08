@@ -1,12 +1,12 @@
-let getPostsList = async () => {
+const getPostsList = async () => {
     const response = await fetch(`https://yts.lt/api/v2/list_movies.json?limit=50`);
     const json = await response.json();
     return json;
 }
 
-let Navbar = {
+const Navbar = {
     render: async () => {
-        let view = `
+        const view = `
                 <nav class="navbar navbar-light bg-dark">
                 <div class="container">
                     <a
@@ -36,9 +36,9 @@ let Navbar = {
         return view
     },
     after_render: async () => {
-        let posts = await getPostsList();
+        const posts = await getPostsList();
         const movies = posts.data.movies;
-        let dropdownMenu = document.querySelector('.dropdown-menu');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
         const movieInfo = movies.map(movie => ({ "id": movie.id, "title": movie.title, "year": movie.year }));
 
         document.querySelector('.search-input').addEventListener('keyup', function (e) {

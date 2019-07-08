@@ -2,19 +2,19 @@
 //  Define Data Sources
 // --------------------------------
 
-let getPostsList = async () => {
+const getPostsList = async () => {
     const response = await fetch(`https://yts.lt/api/v2/list_movies.json?limit=50`);
     const json = await response.json();
     return json;
 }
 
-let Home = {
+const Home = {
     render: async () => {
-        let posts = await getPostsList();
+        const posts = await getPostsList();
         const movies = posts.data.movies;
         const latestMovies = movies.filter(movie => movie.year > 2017).slice(0, 4);
         const moviesByRating = movies.filter(movie => movie.rating > 7).sort((a, b) => b.rating - a.rating);
-        let view = `
+        const view = `
             <section
                 class="section latest-movies"
                 style="background-image: url('https://img.yts.lt/assets/images/movies/the_lego_movie_2_the_second_part_2019/background.jpg')"

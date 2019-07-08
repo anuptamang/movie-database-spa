@@ -1,6 +1,6 @@
-let Bottombar = {
+const Bottombar = {
     render: async () => {
-        let view = `
+        const view = `
         <div class="bg-dark text-white text-center">
             <div class="container py-5">
                <img

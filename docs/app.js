@@ -3,8 +3,8 @@ import "isomorphic-fetch";
 
 import Utils from './services/Utils.js'
 
-import Navbar from './views/components/Header.js'
-import Bottombar from './views/components/Footer.js'
+import Header from './views/components/Header.js'
+import Footer from './views/components/Footer.js'
 
 import Home from './views/pages/Home.js'
 import Error404 from './views/pages/Error404.js'
@@ -18,31 +18,43 @@ const routes = {
 
 // The router code. Takes a URL, checks against the list of supported routes and then renders the corresponding content page.
 const router = async () => {
-
+    console.log('loaded 50%!')
+    setTimeout(() => {
+        document.querySelector('.page-progress').style.width = '50%';
+    }, 300);
     // Lazy load view element:
     const header = null || document.getElementById('header');
     const content = null || document.getElementById('main');
     const footer = null || document.getElementById('footer');
 
     // Render the Header and footer of the page
-    header.innerHTML = await Navbar.render();
-    await Navbar.after_render();
-    footer.innerHTML = await Bottombar.render();
-    await Bottombar.after_render();
+    header.innerHTML = await Header.render();
+    await Header.after_render();
+    footer.innerHTML = await Footer.render();
+    await Footer.after_render();
 
+    document.querySelector('.page-progress').style.width = '70%';
+    console.log('loaded 70%!')
 
     // Get the parsed URl from the addressbar
-    let request = Utils.parseRequestURL()
+    const request = Utils.parseRequestURL()
 
     // Parse the URL and if it has an id part, change it with the string ":id"
-    let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
+    const parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
 
     // Get the page from our hash of supported routes.
     // If the parsed URL is not in our list of supported routes, select the 404 page instead
-    let page = routes[parsedURL] ? routes[parsedURL] : Error404
+    const page = routes[parsedURL] ? routes[parsedURL] : Error404
     content.innerHTML = await page.render();
     await page.after_render();
 
+    document.querySelector('.page-progress').style.width = '100%';
+
+    setTimeout(() => {
+        document.querySelector('.page-progress').style.width = '0';
+    }, 300);
+
+    console.log('loaded 100%!')
 }
 
 // Listen on hash change:
